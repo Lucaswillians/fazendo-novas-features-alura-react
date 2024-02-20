@@ -3,7 +3,7 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
   Vale aqui dizer, que todos esses comentários também se encontram no código para melhor entendimento, para caso houver dúvidas a onde tal coisa foi desenvolvida
 
 {
-  /*
+
     what do we learn?
       - primeiro de tudo, vamoa falar da mudança de uma constante para um state, como fizemos isso?
       bom, a constante de time, onde armazena as cores da nossa aplicação, era uma const, o que fizemos para 
@@ -39,11 +39,11 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
 
 
       vale dizer aqui, que o uuidv4, é apenas outra biblioteca utlizada por devs, para nunca repetir ids (sim, é usada para isso mesmo)
-  */
+ 
 }
 
 {
-  /*
+
     what do we learn? nota importante, pois é a exclusão
       - bom, na função deleteColaborators, temos isso:
        setColaboradores (colaboradores.filter(colaborador => colaborador.id !== id))
@@ -68,11 +68,11 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
           O onClick espera uma função, e ele recebe a execução dessa função, por isto ele executa assim que renderizado!
 
           Para resolver este problema, temos duas formas mais comuns, com a arrow function ou criando uma função no seu componente!
-  */
+
 }
 
 {
-  /*
+
       const cadastrarTime = (novoTime) => 
       {
         setTimes([...times, { ...novoTime , id: uuidv4() }])
@@ -88,15 +88,15 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
         ou seja, passo o nomeTime e o corTime
 
         o que foi adicionado de codigo no componente formulario em index.js foi comentado também para melhor entendimento.
-  */
+
 }
 
 
 -------------------------------------------------------------------------------------------------------------
 
 
+{
 
-  /*
     what do we learn?
      - Adicionamos uma biblioteca do react, no qual importa icones, 
      essa lib, chamada react-icons, possui varios icones distintos,
@@ -120,4 +120,4 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
     - o size={21} ali, ele serve somente para passar o tamanho daquele determinada coisa,
     ali, por exemplo foi o tamanho do icone, vale ressaltar que há muitas funcionalidades
     iguais ali, que fazem coisas muitas outras coisas.
-  */  
+} 
