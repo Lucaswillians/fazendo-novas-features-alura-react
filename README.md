@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+Estudos de react.js realizado para entender e desenvolver novas features de um projeto no qual ja desenvolvi, aqui listei algumas coisas nos quais foram implementadas nesse projeto:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  Vale aqui dizer, que todos esses comentários também se encontram no código para melhor entendimento, para caso houver dúvidas a onde tal coisa foi desenvolvida
 
-## Available Scripts
+{
+  /*
+    what do we learn?
+      - primeiro de tudo, vamoa falar da mudança de uma constante para um state, como fizemos isso?
+      bom, a constante de time, onde armazena as cores da nossa aplicação, era uma const, o que fizemos para 
+      transformarmos ela num state, bom... fizemos o seguinte:
+      era -> const time = [conteudo]
+      ficou assim -> const [time, setTime] = ([conteudo])
+      com isso, alteremos e podemos alterar o estado do conteudo da times
 
-In the project directory, you can run:
+      feito isso, criamos a função ali chamada mudarCorDoTime, se verifica se os dados que estamos passando
+      sao iguais, para então, mudar a cor do background do nosso card.
 
-### `npm start`
+      o principal foi oq fizemos no index.js de Time, onde fizemos isso:
+      <input onChange={event => mudarCor(event.target.value, time.nome)} value={time.corSecundaria} type='color' className='input-cor'/> 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+      isso faz com que aquele pigmento de cor seja adicionada na nossa aplicação.
+      o value={time.corSecundaria}, colocamos ele no codigo para decretar ou 'dizer' em qual valor, ou seja, a onde
+      gostariamos de mexer, ou seja, qual cor gostariamos de alterar e a onde.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+      e por fim, onChange={event => mudarCor(event.target.value, time.nome)}
+      quando queremos alterar algo "pronto" digamos assim, precisamos colocar a função onChanged={}
+      isso faz com que a alteração feita por nós, seja possível. essa função se espera um event, por isso
+      colocamos ali, o mudarCor, é a mesmo prop que passamos ali em cima de <Time> e dai aquele, (event.targer.value)
+      é essencial quando fazemos essa funcionalidade, por fim, passamos o valor da condição que fizemos ali na função
+      mudarCorDoTime, isso faz com que a condição nesse função, possa ser validada, ou seja, tenha valor para então funcionar o IF.
 
-### `npm test`
+      Outra coisa que fizemos dentro de index.js em Time, foi isso -> hexToRgba(time.cor, '0.6')  
+      isso é uma biblioteca onde conseguimos passar uma cor e uma opacidade pra ela, ou seja,
+      fazendo aquilo ali, nos decretemos uma cor para o card, e uma opacidade para o background daquele card
+      o nome da biblioteca importada é essa -> import hexToRgba from 'hex-to-rgba'.
+      Vale dizer aqui também que mudamos o nome que antes era corSecundaria para somente cor, e
+      tiramos o corPrimaria, excluimos qualquer vestigio dele para fazer essa feature de opacidade, ja que
+      a cor primaria ali, decretava o background para os cards.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+      vale dizer aqui, que o uuidv4, é apenas outra biblioteca utlizada por devs, para nunca repetir ids (sim, é usada para isso mesmo)
+  */
+}
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+{
+  /*
+    what do we learn? nota importante, pois é a exclusão
+      - bom, na função deleteColaborators, temos isso:
+       setColaboradores (colaboradores.filter(colaborador => colaborador.id !== id))
+       o setColaboradores, é para selecionar qual colaborador queremos, ou seja, precisamos
+       pegar algum colaborador, e aqui, ele serve pra isso. Nele, fazemos um filter a onde
+       filtramos que o ID do colaborador que pegamos (clicamos) tem que ser diferente do id que temos,
+       feito isso, ele exclui somente um card, ou seja, o card que clicamos, mas, caso a gente colocasse
+       === no lugar de !== ele excluiria todos os outros exceto aquele que clicamos, por isso, colocamos o diferente
+       no lugar, inves de ser igual igual.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+       E a onde crimos o unico de excluir, ou seja, a onde vai ser apertado para ser excluido o card, foi adicionado isso:
+        onClick={() => (toDelete(colaborador.id))}> ou seja, no clique daquele icone, ele chama a propriedade toDelete, a onde
+        armazena a nossa função que citamos acima ali, passando ele como uma função anonima, passando como parametro o colaborador.id
+        ou seja, a validação e a verificação do nosso filter ali. (é necessário ser uma função, mais recomendado usar a anonima).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        Explicação do porque se necessita fazer uma funçao ali:
 
-### `npm run eject`
+          tivemos que transformar um evento em uma arrow function para poder passar o 'id' do colaborador como parâmetro,
+          mas por que precisamos fazer isto? não posso simplesmente fazer onClick={aoDeletar(id)}?
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+          caso acima, o aoDeletar será executado assim que o componente renderizar (pode tentar!) e isto não é o que esperamos!
+          O onClick espera uma função, e ele recebe a execução dessa função, por isto ele executa assim que renderizado!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+          Para resolver este problema, temos duas formas mais comuns, com a arrow function ou criando uma função no seu componente!
+  */
+}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+{
+  /*
+      const cadastrarTime = (novoTime) => 
+      {
+        setTimes([...times, { ...novoTime , id: uuidv4() }])
+      }
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+      essa função acima, faz jus ao nome, sendo responsável por criar um novo time.
+      no componente formulario eu criei dois useState, nos quais sao:
+        const [nomeTime, setNomeTime] = useState("");
+        const [corTime, setCorTime] = useState("");
 
-## Learn More
+        e eu passo essas informações desses state, em aoAlterado, para então saber o que de literalmente, esta
+        sendo alterado, ou, criado. e em valor, passo somente a propriedade de 'leitura'
+        ou seja, passo o nomeTime e o corTime
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+        o que foi adicionado de codigo no componente formulario em index.js foi comentado também para melhor entendimento.
+  */
+}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+-------------------------------------------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  /*
+    what do we learn?
+     - Adicionamos uma biblioteca do react, no qual importa icones, 
+     essa lib, chamada react-icons, possui varios icones distintos,
+     com isso, conseguimos colocar um icone de lixo acima dos cards de 
+     colaboradores, para então, dar a entender que podemos apagar o determindo card,
+     subistituimos a tag que envolve o "botao" do icone, ou seja, a onde esta com a classe
+     'delete', pelo import que fizemos daquele icone na biblioteca,
+     ou seja, se estava assim antes -> <div> uhul </div>
+     ficaria assim agora -> <FaTrash> uhul </FaTrash>
+     substituimos a tag envolvente, pela importada.
 
-### Making a Progressive Web App
+     - vale ressaltar, que o onClick ali no componente, serve para chamar
+     uma função que criamos la em app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+     - esse toDelete, foi criado também como uma especie de props, em time e 
+     colaboradores, pois sempre que eu for editar em colaboradores, ou seja, no card dele,
+     eu preciso passar oq quero determinar para aquilo, ou seja,
+     eu queria determinar que esse icone, aparecesse no card dos colaboradores, com isso
+     tive que passar a 'props' toDelete, no componente time, para que eu pudesse adiconar algo ali.
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    - o size={21} ali, ele serve somente para passar o tamanho daquele determinada coisa,
+    ali, por exemplo foi o tamanho do icone, vale ressaltar que há muitas funcionalidades
+    iguais ali, que fazem coisas muitas outras coisas.
+  */  
