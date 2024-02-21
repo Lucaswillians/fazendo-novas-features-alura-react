@@ -121,3 +121,60 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
     ali, por exemplo foi o tamanho do icone, vale ressaltar que há muitas funcionalidades
     iguais ali, que fazem coisas muitas outras coisas.
 } 
+
+-----------------------------------------------------------------------------------------------------------
+
+{
+    what do we learn?
+         - Adicionamos o campo de pigmento de cor para colocar a cor do card de time
+           para que pudessemos fazer isso, colocamos ali nos parametros, a propriedade chamada
+           type{}, no entanto, tivemos que colocar ela desse jeito aqui -> type = 'text'
+           para que nao desse problema com as outras declarações de type duranto o resto do 
+           codido da aplicação.
+           feito isso, precisamos passar esse type dentro do input, pois, assim falamos a onde queremos
+           que ele atue.
+           com isso, feito alteramos entao o componente formulario no index.js dele, setando esse mesmo
+           type, como color, ou seja, colocamos isso aqui no componente <campo> que exite naquele arquivo
+           type='color', isso faz com que o tipo daquele campo, seja literalmente uma cor, ou seja
+           aquele pigmemto de escolher a cor.
+}
+
+
+{
+what do we learn?
+   - Fizemos o favotirar nos cards, ou seja o like e o dislike, para isso,
+       importamos os icones daquela biblioteca la do react-icons e então fizemos essa
+       condição -> {colaborador.favorito ? <GoHeartFill size={25} onClick={favoritar} /> 
+       : <GoHeart size={25} onClick={favoritar}/>}
+        nessa condição nos fazemos um ternario para cada icone ali que pegamos daquela lib
+        e na condição eles chamam uma função denominada como favoritar, essa função é a seguinte:
+          const favoritar = () =>
+          {
+            aoFavoritar(colaborador.id)
+          }
+        essa função simplesmente chama a propriedade aoFavoritar que está em app.js, passando como parametros
+        o colaborador.id, nos quais são usados em uma outra situação la dentro de app.js
+
+        em App.js temos o seguinte:
+          const resolverFavorito = (id) => 
+          {
+            setColaboradores(colaboradores.map(colaborador => {
+            if (colaborador.id === id) (colaborador.favorito = !colaborador.favorito);
+            return colaborador
+            })) 
+          }
+
+          essa condição simplesmente verifica se quando clicamos no icone, o id bate com o colaborador.id
+          que passamos naquela função favoritar, como disse que seria util, verificando isso, ele faz
+          o que o IF pede ali, aquilo faz com que os icones troquem de like e dislike quando clicados
+          e por fim, retornamos o colaborador.
+
+          vale ressaltar que passamos o aoFavoritar{resolverFavorito} no componente <time> dentro de app
+          para que possamos fazer funcionar o que fizemos.
+           
+          isso aqui -> aoFavoritar={aoFavoritar} também é passado dentro do index do componente Time,
+          pois é em time onde se encontra os colaboradores (cards) e é nele a onde precisamos colocar 
+          para que seja tudo executado como desenvolvido, pois é ali a onde se encontra toda a funcionalidade
+          dos cards criados para os colaboradores.
+
+}
