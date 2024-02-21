@@ -146,8 +146,8 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
   
    - Fizemos o favotirar nos cards, ou seja o like e o dislike, para isso,
        importamos os icones daquela biblioteca la do react-icons e então fizemos essa
-       condição -> {colaborador.favorito ? <GoHeartFill size={25} onClick={favoritar} /> 
-       : <GoHeart size={25} onClick={favoritar}/>}
+       condição -> /*{colaborador.favorito ? <GoHeartFill size={25} onClick={favoritar} /> 
+       : <GoHeart size={25} onClick={favoritar}/>}*/
         nessa condição nos fazemos um ternario para cada icone ali que pegamos daquela lib
         e na condição eles chamam uma função denominada como favoritar, essa função é a seguinte:
           const favoritar = () =>
