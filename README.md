@@ -126,6 +126,7 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
 
 {
     what do we learn?
+    
          - Adicionamos o campo de pigmento de cor para colocar a cor do card de time
            para que pudessemos fazer isso, colocamos ali nos parametros, a propriedade chamada
            type{}, no entanto, tivemos que colocar ela desse jeito aqui -> type = 'text'
@@ -141,7 +142,8 @@ Estudos de react.js realizado para entender e desenvolver novas features de um p
 
 
 {
-what do we learn?
+  what do we learn?
+  
    - Fizemos o favotirar nos cards, ou seja o like e o dislike, para isso,
        importamos os icones daquela biblioteca la do react-icons e então fizemos essa
        condição -> {colaborador.favorito ? <GoHeartFill size={25} onClick={favoritar} /> 
